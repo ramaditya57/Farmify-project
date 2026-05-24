@@ -1,0 +1,232 @@
+/* =========================================================
+   Farmify — Sign Up Styling (Dark Theme + Glassmorphism)
+   ========================================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #0a0f1a;
+}
+
+/* Animated gradient mesh background */
+.bg-mesh {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(52, 211, 153, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(5, 150, 105, 0.05) 0%, transparent 50%);
+    animation: meshFloat 12s ease-in-out infinite alternate;
+}
+
+@keyframes meshFloat {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+}
+
+/* Signup card wrapper */
+.signup-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 460px; /* Spacious width matching signin */
+    padding: 20px;
+    animation: fadeInUp 0.8s var(--ease-out) both;
+    animation-delay: 0.3s;
+}
+
+.signup-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gradient border glow */
+.signup-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius-xl);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), transparent 50%, rgba(16, 185, 129, 0.15));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Logo area */
+.signup-logo {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.signup-logo .brand-icon {
+    font-size: 44px;
+    margin-bottom: 12px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.signup-logo h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+
+.signup-logo p {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+/* Form */
+.signup-form {
+    margin-top: 32px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Input wrappers with icons */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: var(--transition-normal);
+    opacity: 0.7;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 44px; /* extra left space for icon */
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transition-normal);
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.input-wrapper input:focus + .input-icon {
+    color: var(--accent);
+    opacity: 1;
+}
+
+/* Signup button */
+.signup-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--gradient-btn);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+    letter-spacing: 0.03em;
+}
+
+.signup-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-btn-hover);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.signup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-strong);
+}
+
+.signup-btn:hover::before {
+    opacity: 1;
+}
+
+.signup-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.signup-btn:active {
+    transform: translateY(0);
+}
+
+/* Sign In link */
+.login-link {
+    text-align: center;
+    margin-top: 28px;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+.login-link a {
+    color: var(--accent-light);
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.login-link a:hover {
+    color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .signup-card {
+        padding: 36px 24px;
+    }
+}

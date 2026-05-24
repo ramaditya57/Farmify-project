@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmify | Smart Agriculture Solutions</title>
+    <meta name="description" content="Farmify — AI-powered crop prediction and disease detection for smarter farming">
+    <link rel="stylesheet" href="/static/styles/design-system.css">
+    <link rel="stylesheet" href="/static/styles/mainsec.css">
+    <link rel="stylesheet" href="/static/styles/navbar.css">
+    <link rel="stylesheet" href="/static/styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="ambient-particles"></div>
+
+    <header class="header-bar" id="header-bar">
+        <a class="farmify-logo" href="/mainsec"></a>
+        <button class="farmify-menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="farmify-nav" id="farmify-nav">
+            <ul>
+                <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> ABOUT US</a></li>
+                <li><a href="#services" class="nav-link"><i class="fas fa-leaf"></i> SERVICES</a></li>
+                <li><a href="/team" class="nav-link"><i class="fas fa-users"></i> OUR TEAM</a></li>
+                <li><a href="/contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                <li><a href="{{ chatbot_url }}/" id="chatbot-link" class="nav-link"><i class="fas fa-robot"></i> CHATBOT</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" id="user-email">Loading...</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="slideshow-container">
+                <img class="slide active" src="/static/styles/assets/image1.jpg" alt="Smart Agriculture">
+                <img class="slide" src="/static/styles/assets/image2.jpg" alt="Crop Fields">
+                <img class="slide" src="/static/styles/assets/image3.jpg" alt="Technology">
+                <img class="slide" src="/static/styles/assets/image4.jpg" alt="Harvest">
+            </div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge reveal">🌾 AI-Powered Agriculture</span>
+            <h1 class="reveal delay-1">Smarter Farming<br><span class="text-gradient">with Farmify</span></h1>
+            <p class="hero-subtitle reveal delay-2">Predict the best crops and detect plant diseases using cutting-edge machine learning — all in one platform.</p>
+            <div class="hero-actions reveal delay-3">
+                <a href="#services" class="btn-primary"><span><i class="fas fa-seedling"></i> Explore Services</span></a>
+                <a href="#about" class="btn-secondary"><span>Learn More</span></a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stat-item reveal delay-1">
+            <span class="stat-number" data-count="95">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Prediction Accuracy</span>
+        </div>
+        <div class="stat-item reveal delay-2">
+            <span class="stat-number" data-count="38">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Crop Types Supported</span>
+        </div>
+        <div class="stat-item reveal delay-3">
+            <span class="stat-number" data-count="15">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Disease Categories</span>
+        </div>
+        <div class="stat-item reveal delay-4">
+            <span class="stat-number" data-count="1000">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Farmers Helped</span>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image reveal-left">
+                <div class="about-image-inner"></div>
+                <div class="about-image-glow"></div>
+            </div>
+            <div class="about-content reveal-right">
+                <span class="section-badge">About Us</span>
+                <h2>Improving Agriculture,<br>Improving <span class="text-gradient">Lives</span></h2>
+                <h3>Cultivating crops to make farmers increase profit.</h3>
+                <p>We believe in the power of agriculture to transform lives. By working directly with farmers, we're building stronger communities and ensuring a more secure and prosperous future for all.</p>
+                <p>Through innovation, sustainable practices, and cutting-edge technology, we aim to enhance crop productivity, reduce risks, and maximize farmers' profits.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-Driven Insights</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Disease Protection</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Yield Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-header reveal">
+            <span class="section-badge">What We Offer</span>
+            <h2>Our <span class="text-gradient">Services</span></h2>
+            <p class="services-subtitle">Powerful AI tools to help you grow smarter</p>
+        </div>
+        <div class="service-container">
+            <div class="service-card glass-card reveal delay-1">
+                <div class="service-icon-wrapper crop-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Crop Prediction</h3>
+                <p>Smart recommendations about the type of crops best suited for your specific soil conditions, climate, and regional factors using machine learning models.</p>
+                <a href="{{ url_for('home') }}" class="service-cta">
+                    <span>Try Prediction</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-card glass-card reveal delay-2">
+                <div class="service-icon-wrapper disease-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h3>Disease Detection</h3>
+                <p>Advanced AI-powered detection of crop diseases by analyzing leaf images, identifying causes and providing targeted suggestions to protect your harvest.</p>
+                <a href="{{ url_for('dis_pred') }}" class="service-cta">
+                    <span>Detect Disease</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="service-card glass-card reveal delay-3">
+                <div class="service-icon-wrapper chatbot-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Chatbot</h3>
+                <p>Ask our AI assistant anything about farming, crops, soil health, or agricultural practices. Get instant, expert-level answers powered by advanced language models.</p>
+                <a href="{{ chatbot_url }}/" class="service-cta">
+                    <span>Chat Now</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        &copy; 2025 Farmify | Made with <i class="fas fa-heart"></i> by students of VIT Bhopal.
+    </footer>
+
+    <script src="/static/scripts/slideshow.js"></script>
+    <script type="module" src="/static/scripts/signupId.js"></script>
+    <script src="/static/scripts/loader.js"></script>
+    <script src="/static/scripts/navbar.js"></script>
+    <script src="/static/scripts/scroll-animations.js"></script>
+</body>
+</html>

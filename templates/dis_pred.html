@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmify | Disease Detection</title>
+    <meta name="description" content="Upload a crop image to detect diseases using AI">
+    <link rel="stylesheet" href="/static/styles/design-system.css">
+    <link rel="stylesheet" href="/static/styles/navbar.css">
+    <link rel="stylesheet" href="/static/styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles/dis_pred.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="ambient-particles"></div>
+
+    <header class="header-bar" id="header-bar">
+        <a class="farmify-logo" href="/mainsec"></a>
+        <button class="farmify-menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="farmify-nav" id="farmify-nav">
+            <ul>
+                <li><a href="/mainsec" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="/team" class="nav-link"><i class="fas fa-users"></i> OUR TEAM</a></li>
+                <li><a href="/contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                <li><a href="{{ chatbot_url }}/" id="chatbot-link" class="nav-link"><i class="fas fa-robot"></i> CHATBOT</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" id="user-email">Loading...</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="disease-page">
+        <div class="disease-wrapper">
+            <div class="disease-card">
+                <div class="disease-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h1>Disease Detection</h1>
+                <p class="description">Upload a crop leaf image to identify potential diseases and receive recommendations.</p>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <p class="upload-text">Click or drag & drop an image</p>
+                    <p class="upload-hint">Supports JPG, PNG, WEBP</p>
+                </div>
+                <input type="file" id="fileInput" class="file-input" accept="image/*">
+
+                <div class="preview-container" id="previewContainer">
+                    <img id="imagePreview" class="image-preview" src="" alt="Preview">
+                </div>
+
+                <button id="predictBtn" class="predict-btn" disabled>
+                    <span><i class="fas fa-search"></i> Detect Disease</span>
+                </button>
+
+                <div class="inline-loader" id="inlineLoader"></div>
+
+                <div class="result-container" id="resultContainer">
+                    <div class="result-title">Detection Result</div>
+                    <div class="result-text" id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const predictBtn = document.getElementById('predictBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultText = document.getElementById('result');
+        const inlineLoader = document.getElementById('inlineLoader');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('active');
+        });
+
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('active'));
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('active');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        fileInput.addEventListener('change', handleFileSelect);
+
+        function handleFileSelect() {
+            const file = fileInput.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                    uploadArea.style.display = 'none';
+                    predictBtn.disabled = false;
+                };
+                reader.readAsDataURL(file);
+            } else if (file) {
+                alert('Please select an image file');
+            }
+        }
+
+        predictBtn.addEventListener('click', predictDisease);
+
+        function predictDisease() {
+            const file = fileInput.files[0];
+            if (!file) { alert('Please upload an image'); return; }
+
+            inlineLoader.style.display = 'block';
+            resultContainer.style.display = 'none';
+            predictBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/dis_predict', { method: 'POST', body: formData })
+                .then(r => r.json().catch(() => { throw new Error('Failed to parse response'); }))
+                .then(data => {
+                    inlineLoader.style.display = 'none';
+                    resultContainer.style.display = 'block';
+                    if (data.error) {
+                        resultText.innerText = 'Error: ' + data.error;
+                    } else if (data.prediction) {
+                        resultText.innerText = data.prediction;
+                    } else {
+                        resultText.innerText = 'Unexpected response: ' + JSON.stringify(data);
+                    }
+                    predictBtn.disabled = false;
+                })
+                .catch(error => {
+                    inlineLoader.style.display = 'none';
+                    resultContainer.style.display = 'block';
+                    resultText.innerText = 'Error: ' + error.message;
+                    predictBtn.disabled = false;
+                });
+        }
+    </script>
+
+    <script type="module" src="/static/scripts/signupId.js"></script>
+    <script src="/static/scripts/loader.js"></script>
+    <script src="/static/scripts/navbar.js"></script>
+</body>
+</html>

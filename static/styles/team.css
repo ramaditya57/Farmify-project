@@ -1,0 +1,143 @@
+/* =========================================================
+   Farmify — Team Page (Dark Theme)
+   ========================================================= */
+
+.team-page {
+    min-height: 100vh;
+    padding: 140px 24px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.team-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.team-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.team-subtitle {
+    color: var(--text-tertiary);
+    font-size: 1.05rem;
+}
+
+/* Section badge (shared) */
+.section-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 9999px;
+    color: #34d399;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+/* Team grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Team card */
+.team-card {
+    padding: 36px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(16, 185, 129, 0.1);
+}
+
+/* Avatar */
+.team-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    border: 3px solid rgba(16, 185, 129, 0.2);
+    transition: all 0.4s ease;
+}
+
+.team-card:hover .team-avatar {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-avatar img {
+    transform: scale(1.08);
+}
+
+/* Name & Role */
+.team-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.team-role {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    padding: 4px 12px;
+    background: rgba(16, 185, 129, 0.08);
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .team-avatar {
+        width: 120px;
+        height: 120px;
+    }
+}

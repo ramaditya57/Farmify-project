@@ -1,0 +1,291 @@
+/* =========================================================
+   Farmify — Sign In (Login) Styling (Dark Theme + Glassmorphism)
+   ========================================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #0a0f1a;
+}
+
+/* Three.js canvas */
+#particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* Login card wrapper */
+.login-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 460px; /* Spacious width */
+    padding: 20px;
+    animation: fadeInUp 0.8s var(--ease-out) both;
+    animation-delay: 0.3s;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gradient border glow */
+.login-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius-xl);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), transparent 50%, rgba(16, 185, 129, 0.15));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Logo area */
+.login-logo {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login-logo .brand-icon {
+    font-size: 44px;
+    margin-bottom: 12px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.login-logo h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+
+.login-logo p {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+/* Form */
+.login-form {
+    margin-top: 32px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Input wrappers with icons */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: var(--transition-normal);
+    opacity: 0.7;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 44px; /* extra left space for icon */
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transition-normal);
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.input-wrapper input:focus + .input-icon {
+    color: var(--accent);
+    opacity: 1;
+}
+
+.form-extras {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.form-extras a {
+    color: var(--accent-light);
+    font-size: 0.825rem;
+    transition: var(--transition-fast);
+}
+
+.form-extras a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--gradient-btn);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.03em;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-btn-hover);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-strong);
+}
+
+.login-btn:hover::before {
+    opacity: 1;
+}
+
+.login-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 28px 0;
+    gap: 16px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+.divider span {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Google button */
+.google-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--glass-border-strong);
+    transform: translateY(-1px);
+}
+
+.google-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Signup link */
+.signup-link {
+    text-align: center;
+    margin-top: 28px;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color: var(--accent-light);
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.signup-link a:hover {
+    color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 36px 24px;
+    }
+}

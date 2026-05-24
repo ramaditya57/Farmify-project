@@ -1,0 +1,203 @@
+/* =========================================================
+   Farmify — Prediction Result Page Styling (Dark Theme + Glass)
+   ========================================================= */
+
+body {
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.result-page {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+}
+
+/* Background glow */
+.result-page::before {
+    content: '';
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.result-wrapper {
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 0.8s var(--ease-out) both;
+    animation-delay: 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.result-card {
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: 1px solid var(--glass-border-strong);
+    border-radius: var(--radius-xl);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #10b981, transparent);
+}
+
+.result-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.result-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.result-card .result-subtitle {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.prediction-box {
+    padding: 18px 28px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: var(--radius-md);
+    margin-bottom: 28px;
+}
+
+.prediction-label {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+}
+
+.prediction-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Crop image */
+.crop-image-container {
+    margin-bottom: 28px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    position: relative;
+}
+
+.crop-image-container img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.crop-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.crop-image-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.15);
+    pointer-events: none;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: var(--gradient-btn);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-strong);
+}
+
+/* Confetti particles */
+.confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    opacity: 0;
+    animation: confettiFall 3s ease-in-out forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        opacity: 1;
+        transform: translateY(-20vh) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .result-card {
+        padding: 36px 24px;
+    }
+    .prediction-value {
+        font-size: 1.5rem;
+    }
+}

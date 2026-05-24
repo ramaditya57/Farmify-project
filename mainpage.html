@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/static/styles/mainsec.css">
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">LOGIN / SIGNUP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+<!-- Hero Section -->
+<section class="hero">
+    <div class="overlay">
+        <h1>Farmify: Smarter Farming with AI</h1>
+        <h2>Predict Crops & Detect Diseases with Precision!</h2>
+    </div>
+    <div class="slideshow-container">
+        <img class="slide active" src="/static/styles/assets/image1.jpg" alt="Slide 1">
+        <img class="slide" src="/static/styles/assets/image2.jpg" alt="Slide 2">
+        <img class="slide" src="/static/styles/assets/image3.jpg" alt="Slide 3">
+        <img class="slide" src="/static/styles/assets/image4.jpg" alt="Slide 4">
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+</section>
+
+
+
+
+    <!-- About Us Section -->
+    <!-- About Us Section -->
+<section id="about" class="about">
+    <div class="about-container">
+        <div class="about-image">
+        </div>
+        <div class="about-content">
+            <h2>Improving Agriculture, Improving Lives</h2>
+            <h3>Cultivating crops to make farmers increase profit.</h3>
+            <p>We believe in the power of agriculture to transform lives. By working directly with farmers, we're building stronger communities and ensuring a more secure and prosperous future for all. Through innovation, sustainable practices, and cutting-edge technology, we aim to enhance crop productivity, reduce risks, and maximize farmers' profits. Our commitment is to empower farmers with data-driven insights, modern farming techniques, and smart solutions that pave the way for a greener, more resilient agricultural future.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Services Section -->
+    <h2>Our Services</h2> 
+    <section id="services" class="services">
+        <div class="service-container">
+            <!-- Crop Prediction -->
+            <div class="service-box">
+                <div class="service-image crop-banner"></div>
+                <h3>Crop Prediction</h3>
+                <p>Recommendation about the type of crops to be cultivated which is best suited for the respective conditions.</p>
+            </div>
+            
+            <!-- Crop Disease Detection -->
+            <div class="service-box">
+                <div class="service-image disease-banner"></div>
+                <h3>Crop Disease Detection</h3>
+                <p>Predicting the name and causes of crop diseases and providing suggestions to cure them.</p>
+            </div>
+        </div>
+    
+        <div class="service-buttons">
+            <a href="{{ url_for('home') }}"><button class="predict">CROP PREDICTION</button></a>
+            <button class="search">CROP DISEASE DETECTION</button>
+        </div>
+    </section>
+    
+    
+    <script src="/static/scripts/slideshow.js"></script>
+</body>
+</html>

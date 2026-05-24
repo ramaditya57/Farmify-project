@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Farmify | Crop Prediction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predict the best crop for your soil using AI-powered analysis">
+    <link rel="stylesheet" href="/static/styles/design-system.css">
+    <link rel="stylesheet" href="/static/styles/home.css">
+    <link rel="stylesheet" href="/static/styles/navbar.css">
+    <link rel="stylesheet" href="/static/styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Background video -->
+    <video autoplay loop muted playsinline class="video-bg">
+        <source src="/static/styles/assets/background.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    <div class="ambient-particles"></div>
+
+    <header class="header-bar" id="header-bar">
+        <a class="farmify-logo" href="/mainsec"></a>
+        <button class="farmify-menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="farmify-nav" id="farmify-nav">
+            <ul>
+                <li><a href="/mainsec" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="/team" class="nav-link"><i class="fas fa-users"></i> OUR TEAM</a></li>
+                <li><a href="/contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                <li><a href="{{ chatbot_url }}/" id="chatbot-link" class="nav-link"><i class="fas fa-robot"></i> CHATBOT</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" id="user-email">Loading...</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <div class="form-wrapper reveal">
+            <div class="form-card glass-card-strong">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h1>Crop Prediction</h1>
+                    <p>Enter soil and climate parameters to get AI-powered crop recommendations</p>
+                </div>
+
+                <form class="prediction-form" action="/predict" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="input-label" for="N"><i class="fas fa-atom"></i> Nitrogen (N)</label>
+                            <input type="text" id="N" name="N" class="input-modern" placeholder="e.g. 90" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label" for="P"><i class="fas fa-atom"></i> Phosphorus (P)</label>
+                            <input type="text" id="P" name="P" class="input-modern" placeholder="e.g. 42" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label" for="K"><i class="fas fa-atom"></i> Potassium (K)</label>
+                            <input type="text" id="K" name="K" class="input-modern" placeholder="e.g. 43" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="input-label" for="loc"><i class="fas fa-map-marker-alt"></i> Location</label>
+                            <input type="text" id="loc" name="loc" class="input-modern" placeholder="Enter city name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label" for="temperature"><i class="fas fa-thermometer-half"></i> Temperature (°C)</label>
+                            <input type="text" id="temperature" name="temperature" class="input-modern" placeholder="Auto-filled" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label" for="humidity"><i class="fas fa-tint"></i> Humidity (%)</label>
+                            <input type="text" id="humidity" name="humidity" class="input-modern" placeholder="Auto-filled" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label" for="ph"><i class="fas fa-flask"></i> pH Level</label>
+                            <input type="text" id="ph" name="ph" class="input-modern" placeholder="e.g. 6.5" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="input-label" for="rainfall"><i class="fas fa-cloud-rain"></i> Rainfall (mm)</label>
+                            <input type="text" id="rainfall" name="rainfall" class="input-modern" placeholder="e.g. 200" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary submit-btn">
+                        <span><i class="fas fa-magic"></i> Predict Best Crop</span>
+                    </button>
+                </form>
+
+                {% if prediction_text %}
+                <div class="result-banner">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Predicted crop: <strong>{{ prediction }}</strong></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-modern">
+        &copy; Made with <i class="fas fa-heart"></i> by students of VIT Bhopal.
+    </footer>
+
+    <script>
+        const locationInput = document.getElementById('loc');
+        const temperatureInput = document.getElementById('temperature');
+        const humidityInput = document.getElementById('humidity');
+
+        locationInput.addEventListener('change', () => {
+            const location = locationInput.value.trim();
+            if (location) {
+                const apiUrl = `/api/weather?location=${encodeURIComponent(location)}`;
+                // Show loading state
+                temperatureInput.value = 'Loading...';
+                humidityInput.value = 'Loading...';
+
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
+                    .then(data => {
+                        temperatureInput.value = data.main.temp;
+                        humidityInput.value = data.main.humidity;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching weather data:', error);
+                        temperatureInput.value = '';
+                        humidityInput.value = '';
+                        alert('Could not fetch weather data. Please check the location.');
+                    });
+            } else {
+                temperatureInput.value = '';
+                humidityInput.value = '';
+            }
+        });
+    </script>
+
+    <script type="module" src="/static/scripts/signupId.js"></script>
+    <script src="/static/scripts/loader.js"></script>
+    <script src="/static/scripts/navbar.js"></script>
+    <script src="/static/scripts/scroll-animations.js"></script>
+</body>
+</html>

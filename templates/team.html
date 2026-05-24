@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Farmify | Our Team</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/design-system.css">
+    <link rel="stylesheet" href="/static/styles/team.css">
+    <link rel="stylesheet" href="/static/styles/navbar.css">
+    <link rel="stylesheet" href="/static/styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="ambient-particles"></div>
+
+    <header class="header-bar" id="header-bar">
+        <a class="farmify-logo" href="/mainsec"></a>
+        <button class="farmify-menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="farmify-nav" id="farmify-nav">
+            <ul>
+                <li><a href="/mainsec" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="/team" class="nav-link"><i class="fas fa-users"></i> OUR TEAM</a></li>
+                <li><a href="/contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                <li><a href="{{ chatbot_url }}/" id="chatbot-link" class="nav-link"><i class="fas fa-robot"></i> CHATBOT</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" id="user-email">Loading...</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="team-page">
+        <div class="team-header reveal">
+            <span class="section-badge">The People Behind Farmify</span>
+            <h1>Our <span class="text-gradient">Team</span></h1>
+            <p class="team-subtitle">Building the future of smart agriculture together</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card glass-card reveal delay-1">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/KS.jpeg" alt="Ketak">
+                </div>
+                <h3>Ketak</h3>
+                <span class="team-role">22BCE10017</span>
+            </div>
+            <div class="team-card glass-card reveal delay-2">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/RC.jpeg" alt="Ramaditya Chaudhary">
+                </div>
+                <h3>Ramaditya Chaudhary</h3>
+                <span class="team-role">22BCE10352</span>
+            </div>
+            <div class="team-card glass-card reveal delay-3">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/SS.jpeg" alt="Siddharth Sihag">
+                </div>
+                <h3>Siddharth Sihag</h3>
+                <span class="team-role">22BCE11340</span>
+            </div>
+            <div class="team-card glass-card reveal delay-4">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/MY.jpeg" alt="Mayank Yadav">
+                </div>
+                <h3>Mayank Yadav</h3>
+                <span class="team-role">22BCE10276</span>
+            </div>
+            <div class="team-card glass-card reveal delay-5">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/VJ.jpeg" alt="Vaibhav Jindal">
+                </div>
+                <h3>Vaibhav Jindal</h3>
+                <span class="team-role">22BCE10067</span>
+            </div>
+            <div class="team-card glass-card reveal delay-6">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/AA.jpg" alt="Aryan Ashish">
+                </div>
+                <h3>Aryan Ashish</h3>
+                <span class="team-role">22BOE10115</span>
+            </div>
+            <div class="team-card glass-card reveal delay-7">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/AM.jpg" alt="Ashit Mallick">
+                </div>
+                <h3>Ashit Mallick</h3>
+                <span class="team-role">22BCY10055</span>
+            </div>
+            <div class="team-card glass-card reveal delay-8">
+                <div class="team-avatar">
+                    <img src="/static/styles/assets/KK.png" alt="Kunal Kumar">
+                </div>
+                <h3>Kunal Kumar</h3>
+                <span class="team-role">22BHI10108</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-modern">
+        &copy; Made with <i class="fas fa-heart"></i> by students of VIT Bhopal.
+    </footer>
+
+    <script src="/static/scripts/team.js"></script>
+    <script type="module" src="/static/scripts/signupId.js"></script>
+    <script src="/static/scripts/loader.js"></script>
+    <script src="/static/scripts/navbar.js"></script>
+    <script src="/static/scripts/scroll-animations.js"></script>
+</body>
+</html>

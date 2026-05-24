@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmify | Prediction Result</title>
+    <link rel="stylesheet" href="/static/styles/design-system.css">
+    <link rel="stylesheet" href="/static/styles/navbar.css">
+    <link rel="stylesheet" href="/static/styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles/result.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="ambient-particles"></div>
+
+    <header class="header-bar" id="header-bar">
+        <a class="farmify-logo" href="/mainsec"></a>
+        <button class="farmify-menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="farmify-nav" id="farmify-nav">
+            <ul>
+                <li><a href="/mainsec" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="/team" class="nav-link"><i class="fas fa-users"></i> OUR TEAM</a></li>
+                <li><a href="/contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+                <li><a href="{{ chatbot_url }}/" id="chatbot-link" class="nav-link"><i class="fas fa-robot"></i> CHATBOT</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" id="user-email">Loading...</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Confetti -->
+    <div class="confetti" id="confetti"></div>
+
+    <div class="result-page">
+        <div class="result-wrapper">
+            <div class="result-card">
+                <div class="result-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2>Prediction Result</h2>
+                <p class="result-subtitle">Based on your soil and climate data</p>
+
+                <div class="prediction-box">
+                    <div class="prediction-label">Recommended Crop</div>
+                    <div class="prediction-value" id="crop-name">{{ prediction }}</div>
+                </div>
+
+                <div class="crop-image-container">
+                    <img id="crop-image" src="/static/styles/assets/crops/{{ prediction | lower }}.jpg" alt="{{ prediction }}" onerror="this.style.display='none'; this.parentElement.style.display='none';">
+                </div>
+
+                <a href="/home" class="back-btn">
+                    <i class="fas fa-redo"></i> Make Another Prediction
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Confetti celebration effect
+        window.addEventListener('load', () => {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#10b981', '#34d399', '#6ee7b7', '#059669', '#fbbf24', '#3b82f6'];
+
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 1.5 + 's';
+                piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+                piece.style.width = (4 + Math.random() * 8) + 'px';
+                piece.style.height = (4 + Math.random() * 8) + 'px';
+                confettiContainer.appendChild(piece);
+            }
+
+            // Clean up after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        });
+    </script>
+
+    <script type="module" src="/static/scripts/signupId.js"></script>
+    <script src="/static/scripts/loader.js"></script>
+    <script src="/static/scripts/navbar.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* =========================================================
+   Farmify — Disease Prediction Styling (Dark Theme + Glass)
+   ========================================================= */
+
+body {
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.disease-page {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+}
+
+.disease-wrapper {
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 0.8s var(--ease-out) both;
+    animation-delay: 0.2s;
+}
+
+.disease-card {
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: 1px solid var(--glass-border-strong);
+    border-radius: var(--radius-xl);
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.disease-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ef4444, transparent);
+}
+
+.disease-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 auto 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.disease-card h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.disease-card .description {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+}
+
+/* Upload area */
+.upload-area {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: var(--transition-normal);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.upload-area:hover,
+.upload-area.active {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.04);
+}
+
+.upload-area .upload-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.upload-area .upload-text {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+.upload-area .upload-hint {
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    margin-top: 4px;
+    opacity: 0.6;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Preview */
+.preview-container {
+    display: none;
+    margin-bottom: 24px;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+}
+
+/* Predict button */
+.predict-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.predict-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+.predict-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.predict-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Inline loader */
+.inline-loader {
+    display: none;
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(239, 68, 68, 0.15);
+    border-top: 3px solid #ef4444;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Result */
+.result-container {
+    display: none;
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--radius-md);
+    animation: fadeInUp 0.6s ease both;
+}
+
+.result-title {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+}
+
+.result-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f87171;
+}
+
+@media (max-width: 480px) {
+    .disease-card {
+        padding: 36px 24px;
+    }
+    .upload-area {
+        height: 160px;
+    }
+}
