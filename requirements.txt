@@ -3,7 +3,7 @@ gunicorn==26.0.0
 numpy==1.26.4
 pandas==2.2.3
 scikit-learn==1.6.1
-tensorflow==2.16.1
+tensorflow-cpu==2.16.1
 requests==2.32.3
 gdown==5.2.0
 python-dotenv==1.1.0
