@@ -41,6 +41,3 @@ logs/
 
 # User uploads
 uploads/
-
-# Large media files (to be tracked by Git LFS later)
-background.mp4
